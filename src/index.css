@@ -1,0 +1,202 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap");
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: #f6f7f3;
+  --foreground: #173b32;
+  --card: #ffffff;
+  --card-foreground: #173b32;
+  --popover: #ffffff;
+  --popover-foreground: #173b32;
+  --primary: #27745b;
+  --primary-foreground: #ffffff;
+  --secondary: #e9f1d9;
+  --secondary-foreground: #23684f;
+  --muted: #eef3ed;
+  --muted-foreground: #5a6d63;
+  --accent: #d8e975;
+  --accent-foreground: #173b32;
+  --destructive: #a9502f;
+  --destructive-foreground: #ffffff;
+  --border: #dfe7e1;
+  --input: #d5e1d7;
+  --ring: #27745b;
+  --chart-1: #27745b;
+  --chart-2: #b9d5a4;
+  --chart-3: #e2b878;
+  --chart-4: #7da5b7;
+  --chart-5: #9d7bae;
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: #132a24;
+  --foreground: #eef5eb;
+  --card: #1b3830;
+  --card-foreground: #eef5eb;
+  --popover: #1b3830;
+  --popover-foreground: #eef5eb;
+  --primary: #9fcf9d;
+  --primary-foreground: #173b32;
+  --secondary: #294c3d;
+  --secondary-foreground: #e9f1d9;
+  --muted: #294238;
+  --muted-foreground: #a7b8ad;
+  --accent: #d8e975;
+  --accent-foreground: #173b32;
+  --destructive: #e08c78;
+  --destructive-foreground: #291510;
+  --border: #355448;
+  --input: #355448;
+  --ring: #8ab98d;
+}
+
+* {
+  border-color: var(--border);
+}
+html {
+  font-family: "DM Sans", sans-serif;
+  background: var(--background);
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+  /* Cadangan ruang scrollbar agar buka/tutup dialog tidak menggeser layout */
+  scrollbar-gutter: stable;
+}
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--background);
+  color: var(--foreground);
+}
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+button {
+  cursor: pointer;
+}
+button:active {
+  transform: scale(0.985);
+}
+::selection {
+  background: #cfe0a5;
+  color: #173b32;
+}
+
+/* Custom smooth scrollbar — tema SIPETERNAK */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #b9cec2 transparent;
+}
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background: #b9cec2;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: #27745b;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+.dark * {
+  scrollbar-color: #355448 transparent;
+}
+.dark *::-webkit-scrollbar-thumb {
+  background: #355448;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+.dark *::-webkit-scrollbar-thumb:hover {
+  background: #8ab98d;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+/* Scroll area ramping — pakai di sidebar / panel overflow */
+.scroll-slim {
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --font-sans: "DM Sans", sans-serif;
+  --font-display: "Manrope", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Manrope", sans-serif;
+}
+
+/* Kill browser-default control chrome (shadcn/Radix own the visuals) */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.55;
+}
+/* Interaksi fokus: tanpa garis/outline/ring/glow — gunakan tonal background halus.
+   State fokus utama ditangani per komponen/halaman (mis. focus-within:bg-...),
+   bukan garis. Aturan ini membunuh browser default + outline global. */
+:focus,
+:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
